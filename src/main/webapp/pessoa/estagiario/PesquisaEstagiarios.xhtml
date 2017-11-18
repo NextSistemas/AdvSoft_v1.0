@@ -1,0 +1,167 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+	<ui:define name="titulo">Pesquisa | Estagiários </ui:define>
+
+	<ui:define name="corpo">
+		<h1>Estagiários Cadastrados</h1>
+
+		<h:form id="form">
+
+			<p:growl id="messages" autoUpdate="true" />
+
+			<p:toolbar style="margin-top: 15px">
+				<p:toolbarGroup>
+					<p:commandButton value="Novo Cadastro" id="botaoNovo"
+						action="/pessoa/estagiario/CadastroEstagiario.xhtml" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:dataTable id="estagiariosTable"
+				value="#{pesquisaEstagiarioBean.pessoas}" var="pessoa"
+				style="margin-top: 15px"
+				emptyMessage="Nenhum Estagiário ou Estagiária encontrado." rows="20"
+				paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom">
+
+				<p:column headerText="Código"
+					style="text-align: center; width: 50px" sortBy="#{pessoa.codigo}">
+					<h:outputText value="#{pessoa.codigo}" />
+				</p:column>
+
+				<p:column headerText="Situação"
+					style="text-align: center; width: 100px"
+					sortBy="#{pessoa.situacao}">
+					<h:outputText value="#{pessoa.situacao}" />
+				</p:column>
+
+				<p:column headerText="Nome" style="text-align: center; width: 200px"
+					sortBy="#{pessoa.nome}">
+					<h:outputText value="#{pessoa.nome}" />
+				</p:column>
+
+				<p:column headerText="OAB" style="width: 100px; text-align: center"
+					sortBy="#{pessoa.oab}">
+					<h:outputText value="#{pessoa.oab}" />
+				</p:column>
+
+				<p:column headerText="Celular"
+					style="width: 115px; text-align: center" sortBy="#{pessoa.celular}">
+					<h:outputText value="#{pessoa.celular}" />
+				</p:column>
+
+				<p:column style="width: 60px; text-align: center">
+					<p:commandButton update=":form:estagiarioDetail"
+						onclick="PF('infoDialog').show()" icon="ui-icon-newwin"
+						title="Ver detalhes" style="height: 22px">
+						<f:setPropertyActionListener value="#{pessoa}"
+							target="#{pesquisaEstagiarioBean.pessoaSelecionada}" />
+					</p:commandButton>
+					<p:button outcome="CadastroEstagiario" icon="ui-icon-pencil"
+						title="Editar" style="height: 22px">
+						<f:param name="pessoa" value="#{pessoa.codigo}" />
+					</p:button>
+					<p:commandButton update=":form:confirmExclusao"
+						oncomplete="PF('confirmacaoDialog').show()" icon="ui-icon-trash"
+						title="Excluir" style="height: 22px">
+						<f:setPropertyActionListener value="#{pessoa}"
+							target="#{pesquisaEstagiarioBean.pessoaSelecionada}" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+
+			<p:dialog header="Informações do Estagiário(a)" widgetVar="infoDialog"
+				modal="true" showEffect="fade" hideEffect="fade" resizable="false"
+				draggable="false" responsive="true" minimizable="false"
+				maximizable="false" width="800px" height="380px">
+				<p:outputPanel id="estagiarioDetail">
+					<p:panelGrid columns="4"
+						rendered="#{not empty pesquisaEstagiarioBean.pessoaSelecionada}"
+						columnClasses="label,value,label,value">
+
+						<h:outputText value="Situação:" />
+						<h:outputText
+							value="#{pesquisaEstagiarioBean.pessoaSelecionada.situacao}" />
+
+						<h:outputText value="Nome:" />
+						<h:outputText
+							value="#{pesquisaEstagiarioBean.pessoaSelecionada.nome}" />
+
+						<h:outputText value="Turno:" />
+						<h:outputText
+							value="#{pesquisaEstagiarioBean.pessoaSelecionada.turno}" />
+
+						<h:outputText value="E-mail:" />
+						<h:outputText
+							value="#{pesquisaEstagiarioBean.pessoaSelecionada.email}" />
+
+						<h:outputText value="OAB:" />
+						<h:outputText
+							value="#{pesquisaEstagiarioBean.pessoaSelecionada.oab}" />
+
+						<h:outputText value="Celular:" />
+						<h:outputText
+							value="#{pesquisaEstagiarioBean.pessoaSelecionada.celular}" />
+
+						<h:outputText value="Telefone:" />
+						<h:outputText
+							value="#{pesquisaEstagiarioBean.pessoaSelecionada.telefone}" />
+
+						<h:outputText value="Observações:" />
+						<h:outputText
+							value="#{pesquisaEstagiarioBean.pessoaSelecionada.observacao}" />
+
+						<h:outputText value="Endereço:" />
+						<h:outputText
+							value="#{pesquisaEstagiarioBean.pessoaSelecionada.endereco}" />
+
+						<h:outputText value="CEP:" />
+						<h:outputText
+							value="#{pesquisaEstagiarioBean.pessoaSelecionada.cep}" />
+
+						<h:outputText value="Complemento:" />
+						<h:outputText
+							value="#{pesquisaEstagiarioBean.pessoaSelecionada.complemento}" />
+
+						<h:outputText value="Nº:" />
+						<h:outputText
+							value="#{pesquisaEstagiarioBean.pessoaSelecionada.numero}" />
+
+						<h:outputText value="Bairro:" />
+						<h:outputText
+							value="#{pesquisaEstagiarioBean.pessoaSelecionada.bairro}" />
+
+						<h:outputText value="Cidade:" />
+						<h:outputText
+							value="#{pesquisaEstagiarioBean.pessoaSelecionada.cidade}" />
+
+						<h:outputText value="UF:" />
+						<h:outputText
+							value="#{pesquisaEstagiarioBean.pessoaSelecionada.uf}" />
+
+					</p:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
+
+			<p:confirmDialog id="confirmExclusao"
+				header="Exclusão de Estagiário(a)"
+				message="Tem certeza que deseja excluir o Estagiário(a) #{pesquisaEstagiarioBean.pessoaSelecionada.nome}?"
+				showEffect="fade" hideEffect="fade" severity="alert"
+				widgetVar="confirmacaoDialog">
+				<h:form id="formExcluir">
+					<p:commandButton value="Sim"
+						action="#{pesquisaEstagiarioBean.excluir}" immediate="true"
+						oncomplete="PF('confirmacaoDialog').hide()" process="@this"
+						update=":form:estagiariosTable" />
+					<p:commandButton value="Não"
+						onclick="PF('confirmacaoDialog').hide()" type="button" />
+				</h:form>
+			</p:confirmDialog>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

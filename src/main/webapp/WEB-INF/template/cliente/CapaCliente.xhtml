@@ -1,0 +1,216 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+	<script>
+		PrimeFaces.locales['pt'] = {
+			closeText : 'Fechar',
+			prevText : 'Anterior',
+			nextText : 'Próximo',
+			currentText : 'Começo',
+			monthNames : [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio',
+					'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro',
+					'Novembro', 'Dezembro' ],
+			monthNamesShort : [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+					'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez' ],
+			dayNames : [ 'Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta',
+					'Sexta', 'Sábado' ],
+			dayNamesShort : [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb' ],
+			dayNamesMin : [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S' ],
+			weekHeader : 'Semana',
+			firstDay : 0,
+			isRTL : false,
+			showMonthAfterYear : false,
+			yearSuffix : '',
+			timeOnlyTitle : 'Só Horas',
+			timeText : 'Tempo',
+			hourText : 'Hora',
+			minuteText : 'Minuto',
+			secondText : 'Segundo',
+			ampm : false,
+			month : 'Mês',
+			week : 'Semana',
+			day : 'Dia',
+			allDayText : 'Todo o Dia'
+		};
+	</script>
+
+	<p:tabView id="painelView" style="margin-top: 15px; width: 100%"
+		effect="fade">
+		<p:tab title="Dados Pessoais">
+			<p:panelGrid columns="4" columnClasses="rotulo, campo, rotulo, campo"
+				style="width: 100%">
+
+				<p:outputLabel value="NOME:" for="nome" />
+				<p:inputText id="nome" size="50" maxlength="60"
+					placeholder="Ex. Maria Rita" required="true"
+					requiredMessage="O Nome é obrigatório!"
+					value="#{cadastroClienteBean.pessoa.nome}" />
+
+				<p:outputLabel value="DATA DE NASCIMENTO:" for="dataNasc" />
+				<p:calendar id="dataNasc" required="true" locale="pt"
+					requiredMessage="A data de nascimento é obrigatória!" pattern="dd/MM/yyyy"
+					value="#{cadastroClienteBean.pessoa.dataNascimento}" />
+
+				<p:outputLabel value="APELIDO:" for="apelido" />
+				<p:inputText id="apelido" size="50" maxlength="60"
+					value="#{cadastroClienteBean.pessoa.apelido}" />
+
+				<p:outputLabel value="NOME DA MÃE:" for="nomeMae" />
+				<p:inputText id="nomeMae" size="50" maxlength="60"
+					value="#{cadastroClienteBean.pessoa.nomeDaMae}" />
+
+				<p:outputLabel value="CPF:" for="cpf" />
+				<p:inputMask id="cpf" mask="999.999.999-99" size="14" maxlength="15"
+					placeholder="Digite o CPF"
+					value="#{cadastroClienteBean.pessoa.cpf}" />
+
+				<p:outputLabel value="CNPJ:" for="cnpj" />
+				<p:inputText id="cnpj" size="20" maxlength="20"
+					value="#{cadastroClienteBean.pessoa.cnpj}" />
+
+				<p:outputLabel value="RG:" for="rg" />
+				<p:inputText id="rg" size="10" maxlength="7"
+					value="#{cadastroClienteBean.pessoa.rg}" />
+
+				<p:outputLabel value="IE:" for="ie" />
+				<p:inputText id="ie" size="20" maxlength="20"
+					value="#{cadastroClienteBean.pessoa.ie}" />
+
+				<p:outputLabel value="CELULAR" for="celular" />
+				<p:inputMask id="celular" mask="(99) 99999-9999" size="15"
+					maxlength="15" placeholder="Digite o celular" required="true"
+					requiredMessage="O celular é obrigatório!"
+					value="#{cadastroClienteBean.pessoa.celular}" />
+
+				<p:outputLabel value="TELEFONE:" for="telefone" />
+				<p:inputMask id="telefone" mask="(99) 9999-9999" size="15"
+					maxlength="14" placeholder="Digite o telefone"
+					value="#{cadastroClienteBean.pessoa.telefone}" />
+
+				<p:outputLabel value="E-MAIL:" for="email" />
+				<p:inputText id="email" size="50" maxlength="100"
+					placeholder="Digite o e-mail"
+					value="#{cadastroClienteBean.pessoa.email}" />
+
+				<p:outputLabel value="SITUAÇÃO:" for="situacao"
+					style="font-weight: bold" />
+				<p:selectOneRadio id="situacao" required="true"
+					requiredMessage="A situação e obrigatória!"
+					value="#{cadastroClienteBean.pessoa.situacao}">
+					<f:selectItem itemLabel="ATIVO" itemValue="ATIVO" />
+					<f:selectItem itemLabel="INATIVO" itemValue="INATIVO" />
+				</p:selectOneRadio>
+			</p:panelGrid>
+		</p:tab>
+
+		<p:tab title="Endereço">
+			<p:panelGrid columns="4" columnClasses="rotulo, campo, rotulo, campo"
+				style="width: 100%">
+				<p:outputLabel value="ENDEREÇO:" for="endereco" />
+				<p:inputText id="endereco" size="50" maxlength="150"
+					placeholder="Digite o nome da rua" required="true"
+					requiredMessage="O endereço é obrigatório!"
+					value="#{cadastroClienteBean.pessoa.endereco}" />
+
+				<p:outputLabel value="CEP:" for="cep" />
+				<p:inputMask id="cep" mask="99999-999" size="10" maxlength="9"
+					required="true" placeholder="Digite o cep"
+					requiredMessage="O CEP é obrigatório!"
+					value="#{cadastroClienteBean.pessoa.cep}" />
+
+				<p:outputLabel value="COMPLEMENTO:" for="complemento" />
+				<p:inputText id="complemento" size="20" maxlength="100"
+					placeholder="Digite o complemento" required="true"
+					requiredMessage="O complemento é obrigatório!"
+					value="#{cadastroClienteBean.pessoa.complemento}" />
+
+				<p:outputLabel value="Nº:" for="numero" />
+				<p:inputText id="numero" size="20" maxlength="10"
+					placeholder="Digite o numero"
+					value="#{cadastroClienteBean.pessoa.numero}" />
+
+				<p:outputLabel value="BAIRRO:" for="bairro" />
+				<p:inputText id="bairro" size="50" maxlength="100"
+					placeholder="Digite o bairro"
+					value="#{cadastroClienteBean.pessoa.bairro}" />
+
+				<p:outputLabel value="CIDADE:" for="cidade" />
+				<p:inputText id="cidade" size="20" maxlength="100"
+					placeholder="Digite a cidade" required="true"
+					requiredMessage="A cidade é obrigatória!"
+					value="#{cadastroClienteBean.pessoa.cidade}" />
+
+				<p:outputLabel value="ESTADO(UF)" for="uf" />
+				<p:selectOneMenu id="uf" value="#{cadastroClienteBean.pessoa.uf}"
+					required="true" requiredMessage="UF do Estado é obrigatório">
+					<f:selectItem itemLabel="Selecione" itemValue="" />
+					<f:selectItem itemLabel="PA - Pará" itemValue="PA" />
+					<f:selectItem itemLabel="AC - Acre" itemValue="AC" />
+					<f:selectItem itemLabel="AL - Alagoas" itemValue="AL" />
+					<f:selectItem itemLabel="AP - Amapá" itemValue="AP" />
+					<f:selectItem itemLabel="AM - Amazonas" itemValue="AM" />
+					<f:selectItem itemLabel="BA - Bahia" itemValue="BA" />
+					<f:selectItem itemLabel="CE - Ceará" itemValue="CE" />
+					<f:selectItem itemLabel="DF - Distrito Federal" itemValue="DF" />
+					<f:selectItem itemLabel="ES - Espírito Santo" itemValue="ES" />
+					<f:selectItem itemLabel="GO - Goiás" itemValue="GO" />
+					<f:selectItem itemLabel="MA - Maranhão" itemValue="MA" />
+					<f:selectItem itemLabel="MT - Mato Grosso" itemValue="MT" />
+					<f:selectItem itemLabel="MS - Mato Grosso do Sul" itemValue="MS" />
+					<f:selectItem itemLabel="MG - Minas Gerais" itemValue="MG" />
+					<f:selectItem itemLabel="PB - Paraíba" itemValue="PB" />
+					<f:selectItem itemLabel="PR - Paraná" itemValue="PR" />
+					<f:selectItem itemLabel="PE - Pernambuco" itemValue="PE" />
+					<f:selectItem itemLabel="PI - Piauí" itemValue="PI" />
+					<f:selectItem itemLabel="RJ - Rio de Janeiro" itemValue="RJ" />
+					<f:selectItem itemLabel="RN - Rio Grande do Norte" itemValue="RN" />
+					<f:selectItem itemLabel="RS - Rio Grande do Sul" itemValue="RS" />
+					<f:selectItem itemLabel="RO - Rondônia" itemValue="RO" />
+					<f:selectItem itemLabel="RR - Roraima" itemValue="RR" />
+					<f:selectItem itemLabel="SC - Santa Catarina" itemValue="SC" />
+					<f:selectItem itemLabel="SP - São Paulo" itemValue="SP" />
+					<f:selectItem itemLabel="SE - Sergipe" itemValue="SE" />
+					<f:selectItem itemLabel="TO - Tocantins" itemValue="TO" />
+				</p:selectOneMenu>
+			</p:panelGrid>
+		</p:tab>
+
+		<p:tab title="Observações">
+			<p:panelGrid columns="4" columnClasses="rotulo, campo, rotulo, campo"
+				style="width: 100%">
+				<p:outputLabel value="OBSERVAÇÕES:" for="obs" />
+				<h:panelGroup>
+					<p:inputTextarea id="obs"
+						value="#{cadastroClienteBean.pessoa.observacao}" cols="100"
+						rows="1" autoResize="true" maxlength="250" counter="contador"
+						counterTemplate="Restam {0} caracteres" />
+					<br />
+					<h:outputText id="contador" />
+				</h:panelGroup>
+			</p:panelGrid>
+		</p:tab>
+		<!-- <p:tab title="Anexos">
+			<p:panelGrid columns="4" columnClasses="rotulo, campo, rotulo, campo"
+				style="width: 100%">
+				<p:fileUpload uploadLabel="Enviar" cancelLabel="Cancelar"
+					label="Selecionar"
+					fileUploadListener="#{cadastroClienteBean.fileUploadImage}"
+					dragDropSupport="false" multiple="true" sizeLimit="2000000"
+					allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+				<center>
+					<p:galleria id="arqAnexoCliente"
+						value="#{cadastroClienteBean.images}" var="image"
+						effect="slide" effectSpeed="1000" panelHeight="250"
+						panelWidth="500" showCaption="true">
+						<p:graphicImage
+							name="images/pessoa/#{cadastroClienteBean.pessoa.codigo}/#{image}"
+							alt="#{image}" width="500" height="250" />
+					</p:galleria>
+				</center>
+			</p:panelGrid>
+		</p:tab> -->
+	</p:tabView>
+</ui:composition>

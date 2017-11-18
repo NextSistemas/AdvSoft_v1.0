@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title><ui:insert name="titulo">AdvSoft Módulo web 1.0</ui:insert></title>
+	<h:outputStylesheet library="css" name="sistema.css" />
+</h:head>
+
+<h:body
+	style="background: url('resources/images/direito.png') repeat !important;">
+
+	<!-- **************************A J A X - S T A T U S************************** -->
+	<p:ajaxStatus onstart="PF('statusDialog').show();"
+		onsuccess="PF('statusDialog').hide();" />
+	<p:dialog modal="true" widgetVar="statusDialog" draggable="false"
+		closable="false">
+		<p:graphicImage library="images" name="carregando.gif" />
+	</p:dialog>
+
+	<header>
+	<div style="float: left">
+		<h:link outcome="/Home">
+			<h:graphicImage library="images" name="LogoADV_BRANCO.png" />
+		</h:link>
+	</div>
+
+	<div style="float: right; margin-right: 10px">
+	<span style="float: left; height: 30px; line-height: 30px; margin-right: 60px">
+		Olá #{seguranca.nomeUsuario}!
+	</span>
+		<h:form style="display: inline-block">
+			<p:menubar styleClass="menu-sistema">
+				<p:submenu label="Cadastro" icon="ui-icon-plusthick">
+					<p:submenu label="Novo" icon="ui-icon-plusthick">
+						<p:menuitem value="Usuário" icon="ui-icon-plusthick"
+							url="/usuario/PesquisaUsuarios.xhtml" />
+						<p:menuitem value="Advogado" icon="ui-icon-plusthick"
+							url="/pessoa/advogado/PesquisaAdvogados.xhtml" />
+						<p:menuitem value="Estagiário" icon="ui-icon-plusthick"
+							url="/pessoa/estagiario/PesquisaEstagiarios.xhtml" />
+						<p:menuitem value="Advogado Associado" icon="ui-icon-plusthick"
+							url="/pessoa/advogado_associado/PesquisaAdvogadosAssociado.xhtml" />
+						<p:menuitem value="Cliente" icon="ui-icon-plusthick"
+							url="/pessoa/cliente/PesquisaClientes.xhtml" />
+						<p:menuitem value="Colaborador" icon="ui-icon-plusthick"
+							url="/colaborador/PesquisaColaborador.xhtml" />
+						<p:menuitem value="Instância" icon="ui-icon-plusthick"
+							url="/instancia/PesquisaInstancias.xhtml" />
+						<p:menuitem value="Tribunal" icon="ui-icon-plusthick"
+							url="/tribunal/PesquisaTribunal.xhtml" />
+						<p:menuitem value="Comarca" icon="ui-icon-plusthick"
+							url="/comarca/PesquisaComarca.xhtml" />
+						<p:menuitem value="Vara/Foro" icon="ui-icon-plusthick"
+							url="/vara_foro/PesquisaVaraForo.xhtml" />
+						<p:menuitem value="Tipos de Processos" icon="ui-icon-plusthick"
+							url="/tipo_processo/PesquisaTipoProcesso.xhtml" />
+						<p:menuitem value="Processos" icon="ui-icon-plusthick"
+							url="/processo/PesquisaProcessos.xhtml" />
+
+					</p:submenu>
+					<p:separator>
+					</p:separator>
+					<p:menuitem value="Sair do Sistema" icon="ui-icon-power"
+						url="/j_spring_security_logout" />
+				</p:submenu>
+				<p:submenu label="Consultas" icon="ui-icon-search">
+					<p:menuitem value="Cliente" icon="ui-icon-person" url="#" />
+					<p:menuitem value="Processos" icon="ui-icon-document-b" url="#" />
+					<p:menuitem value="Histórico Processos" icon="ui-icon-bookmark"
+						url="#" />
+				</p:submenu>
+
+				<p:submenu label="Agendamentos" icon="ui-icon-note">
+					<p:menuitem value="Compromissos" icon="ui-icon-calendar"
+						url="/agendamento/PesquisaAgendamentos.xhtml" />
+
+				</p:submenu>
+
+
+				<p:submenu label="Utilitários" icon="ui-icon-wrench">
+					<p:menuitem value="Realizar Backup" icon="ui-icon-wrench" url="#" />
+					<p:menuitem value="Restaurar Backup" icon="ui-icon-wrench" url="#" />
+				</p:submenu>
+
+
+
+				<p:submenu label="Modelos de Petições" icon="ui-icon-document">
+					<p:menuitem value="Modelos Gerais" icon="ui-icon-document-b"
+						url="#" />
+
+				</p:submenu>
+
+
+				<p:submenu label="Ajuda" icon="ui-icon-help">
+					<p:menuitem value="Sobre" icon="ui-icon-info" url="#" />
+
+				</p:submenu>
+
+			</p:menubar>
+		</h:form>
+	</div>
+	<div style="clear: both"></div>
+	</header>
+	<div id="conteudo">
+		<ui:insert name="corpo" />
+	</div>
+	<p:separator style="margin-top: 20px" />
+	<center>
+		<footer> Sistema para gerênciamento de Processos Jurídicos -
+		<a href="http://bit.ly/Y8saFl" target="_blank">www.nextsistemas.inf.br
+		</a> &copy; 2017 </footer>
+	</center>
+</h:body>
+
+</html>

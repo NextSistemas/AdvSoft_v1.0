@@ -1,0 +1,80 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Acesso | AdvSoft</ui:define>
+
+	<ui:define name="corpo">
+		
+		<f:metadata>
+			<f:viewParam name="dummy"/>
+			<f:event listener="#{loginBean.preRender}" type="preRenderView" />
+		</f:metadata>
+	
+		<div id="login-dialog">
+
+			<h:form id="frm" prependId="false">
+			
+			<p:messages id="messages" autoUpdate="true" closable="true" />
+			
+				<h:panelGrid columns="2" styleClass="grid-login" cellpadding="4">
+					<p:graphicImage library="images" name="user.png" />
+					<p:inputText id="j_username" size="30"
+						placeholder="Digite o seu e-mail" value="#{loginBean.email}" />
+
+					<p:graphicImage library="images" name="pass.png" />
+					<p:password id="j_password" size="30"
+						placeholder="Digite a sua senha" />
+
+					<h:panelGroup />
+					<p:commandButton value="Entrar" id="entrar" icon="ui-icon-check"
+						action="#{loginBean.login}" ajax="false" />
+				</h:panelGrid>
+				<br></br>
+			</h:form>
+		</div>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+
+	</ui:define>
+
+</ui:composition>

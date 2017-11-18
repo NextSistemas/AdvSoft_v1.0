@@ -1,0 +1,114 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+	<ui:define name="titulo">Pesquisa | Tribunais </ui:define>
+
+	<ui:define name="corpo">
+		<h1>Tribunais Cadastrados</h1>
+
+		<h:form id="form">
+
+			<p:growl id="messages" autoUpdate="true" />
+
+				<p:toolbar style="margin-top: 15px">
+				<p:toolbarGroup>
+					<p:commandButton value="Novo Cadastro" id="botaoNovo"
+						action="/tribunal/CadastroTribunal.xhtml" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:dataTable id="tribunalTable"
+				value="#{pesquisaTribunalBean.tribunais}" var="tribunal"
+				style="margin-top: 15px"
+				emptyMessage="Nenhum Tribunal encontrado." rows="20"
+				paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom">
+
+				<p:column headerText="Código"
+					style="text-align: center; width: 50px">
+					<h:outputText value="#{tribunal.id}" />
+				</p:column>
+
+				<p:column headerText="Descrição"
+					style="text-align: center; width: 100px">
+					<h:outputText value="#{tribunal.descricao}" />
+				</p:column>
+
+				<p:column headerText="Endereço" style="text-align: center; width: 200px">
+					<h:outputText value="#{tribunal.endereco}" />
+				</p:column>
+
+				<p:column headerText="Pertence" style="width: 100px; text-align: center">
+					<h:outputText value="#{tribunal.pertence}" />
+				</p:column>
+
+				<p:column style="width: 100px; text-align: center">
+					<p:commandButton update=":form:tribDetail"
+						onclick="PF('infoDialog').show()" icon="ui-icon-newwin"
+						title="Ver detalhes" style="height: 22px">
+						<f:setPropertyActionListener value="#{tribunal}"
+							target="#{pesquisaTribunalBean.tribunalSelecionado}" />
+					</p:commandButton>
+					<p:button outcome="CadastroTribunal" icon="ui-icon-pencil"
+						title="Editar" style="height: 22px">
+						<f:param name="tribunal" value="#{tribunal.id}" />
+					</p:button>
+					<p:commandButton update=":form:confirmExclusao"
+						oncomplete="PF('confirmacaoDialog').show()" icon="ui-icon-trash"
+						title="Excluir" style="height: 22px">
+						<f:setPropertyActionListener value="#{tribunal}"
+							target="#{pesquisaTribunalBean.tribunalSelecionado}" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+
+			<p:dialog header="Informações do Tribunal" widgetVar="infoDialog"
+				modal="true" showEffect="fade" hideEffect="fade" resizable="false" draggable="false" responsive="true"
+				minimizable="true" maximizable="false" width="800px" height="380px">
+				<p:outputPanel id="tribDetail">
+					<p:panelGrid columns="2"
+						rendered="#{not empty pesquisaTribunalBean.tribunalSelecionado}"
+						columnClasses="label,value,label,value">
+						
+						<h:outputText value="Codigo:" />
+						<h:outputText
+							value="#{pesquisaTribunalBean.tribunalSelecionado.id}" />
+
+						<h:outputText value="Descrição:" />
+						<h:outputText
+							value="#{pesquisaTribunalBean.tribunalSelecionado.descricao}" />
+
+						<h:outputText value="Endereço:" />
+						<h:outputText
+							value="#{pesquisaTribunalBean.tribunalSelecionado.endereco}" />
+
+						<h:outputText value="Pertence:" />
+						<h:outputText
+							value="#{pesquisaTribunalBean.tribunalSelecionado.pertence}" />
+
+					</p:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
+
+			<p:confirmDialog id="confirmExclusao"
+				header="Exclusão de Tribunal"
+				message="Tem certeza que deseja excluir o Tribunal #{pesquisaTribunalBean.tribunalSelecionado.descricao}?"
+				showEffect="fade" hideEffect="fade" severity="alert"
+				widgetVar="confirmacaoDialog">
+				<h:form id="formExcluir">
+					<p:commandButton value="Sim"
+						action="#{pesquisaTribunalBean.excluir}" immediate="true"
+						oncomplete="PF('confirmacaoDialog').hide()" process="@this"
+						update=":form:tribunalTable" />
+					<p:commandButton value="Não"
+						onclick="PF('confirmacaoDialog').hide()" type="button" />
+				</h:form>
+			</p:confirmDialog>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

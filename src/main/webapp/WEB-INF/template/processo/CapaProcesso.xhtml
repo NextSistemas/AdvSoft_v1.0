@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+	<p:panelGrid columns="2" id="painel"
+		style="width: 100%; margin-top: 15px" columnClasses="rotulo, campo">
+
+		<p:outputLabel value="Tipo do Processo:" for="tipoProcesso" />
+		<p:selectOneMenu id="tipoProcesso" required="true"
+			requiredMessage="Um Tipo de processo deve ser vinculado"
+			value="#{cadastroProcessoBean.processo.tipoProcesso}">
+			<f:selectItem itemLabel="Selecione o Tipo de Processo" />
+			<f:selectItems value="#{cadastroProcessoBean.tipoProcessos}"
+				var="tipoProcesso" itemLabel="#{tipoProcesso.descricao}"
+				itemValue="#{tipoProcesso}" />
+		</p:selectOneMenu>
+
+		<p:outputLabel value="Advogado(a):" for="advogado" />
+		<p:selectOneMenu id="advogado" required="true"
+			requiredMessage="Um Adovogado(a) deve ser vinculado"
+			value="#{cadastroProcessoBean.processo.pessoa}">
+			<f:selectItem itemLabel="Selecione o Advogado(a)" />
+			<f:selectItems value="#{cadastroProcessoBean.pessoas}" var="advogado"
+				itemLabel="#{advogado.nome}" itemValue="#{advogado}" />
+		</p:selectOneMenu>
+
+		<p:outputLabel value="Processo:" for="processo"
+			style="font-weight: bold" />
+		<p:selectOneRadio id="processo" required="true"
+			requiredMessage="Campo obrigatório!"
+			value="#{cadastroProcessoBean.processo.requerenteRequerido}">
+			<f:selectItem itemLabel="REQUERENTE" itemValue="REQUERENTE" />
+			<f:selectItem itemLabel="REQUERIDO" itemValue="REQUERIDO" />
+		</p:selectOneRadio>
+
+		<p:outputLabel value="Identificador Do Processo:" for="idProcesso" />
+		<p:inputText id="idProcesso" size="50" maxlength="150"
+			placeholder="Ex. Número do processo, sinistro, etc."
+			value="#{cadastroProcessoBean.processo.idProcesso}" />
+
+		<p:outputLabel value="Comarca:" for="comarca" />
+		<p:selectOneMenu id="comarca" required="true"
+			requiredMessage="Uma Comarca deve ser vinculada"
+			value="#{cadastroProcessoBean.processo.comarca}">
+			<f:selectItem itemLabel="Selecione a Comarca" />
+			<f:selectItems value="#{cadastroProcessoBean.comarcas}" var="comarca"
+				itemLabel="#{comarca.descricao}" itemValue="#{comarca}" />
+		</p:selectOneMenu>
+
+	</p:panelGrid>
+
+</ui:composition>

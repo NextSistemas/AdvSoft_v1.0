@@ -1,0 +1,96 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+	<ui:define name="titulo">Pesquisa | Tipo de Processo </ui:define>
+
+	<ui:define name="corpo">
+		<h1>Tipo de Processos Cadastrados</h1>
+
+		<h:form id="form">
+
+			<p:growl id="messages" autoUpdate="true" />
+
+			<p:toolbar style="margin-top: 15px">
+				<p:toolbarGroup>
+					<p:commandButton value="Novo Cadastro" id="botaoNovo"
+						action="/tipo_processo/CadastroTipoProcesso.xhtml" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:dataTable id="tiProTable"
+				value="#{pesquisaTipoProcessoBean.tipoProcesso}" var="tipoProcesso"
+				style="margin-top: 15px"
+				emptyMessage="Nenhum tipo de processo encontrado." rows="20"
+				paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom">
+
+				<p:column headerText="Código"
+					style="text-align: center; width: 50px">
+					<h:outputText value="#{tipoProcesso.codigo}" />
+				</p:column>
+
+				<p:column headerText="Descrição"
+					style="text-align: center; width: 50px">
+					<h:outputText value="#{tipoProcesso.descricao}" />
+				</p:column>
+
+				<p:column style="width: 60px; text-align: center">
+					<p:commandButton update=":form:TiProDetail"
+						onclick="PF('TiProDetail').show()" icon="ui-icon-newwin"
+						title="Ver detalhes" style="height: 22px">
+						<f:setPropertyActionListener value="#{tipoProcesso}"
+							target="#{pesquisaTipoProcessoBean.tipoProcessoSelecionado}" />
+					</p:commandButton>
+					<p:button outcome="CadastroTipoProcesso" icon="ui-icon-pencil"
+						title="Editar" style="height: 22px">
+						<f:param name="tipoProcesso" value="#{tipoProcesso.codigo}" />
+					</p:button>
+					<p:commandButton update=":form:confirmExclusao"
+						oncomplete="PF('confirmacaoDialog').show()" icon="ui-icon-trash"
+						title="Excluir" style="height: 22px">
+						<f:setPropertyActionListener value="#{tipoProcesso}"
+							target="#{pesquisaTipoProcessoBean.tipoProcessoSelecionado}" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+
+			<p:dialog header="Informações do Tipo De Processo"
+				widgetVar="TiProDetail" modal="true" showEffect="fade"
+				hideEffect="fade" resizable="false" draggable="false"
+				responsive="true" minimizable="true" maximizable="false"
+				width="800px" height="380px">
+				<p:outputPanel id="TiProDetail">
+					<p:panelGrid columns="4"
+						rendered="#{not empty pesquisaTipoProcessoBean.tipoProcessoSelecionado}"
+						columnClasses="label,value,label,value">
+
+						<h:outputText value="Descrição:" />
+						<h:outputText
+							value="#{cadastroTipoProcessoBean.tipoProcesso.descricao}" />
+
+					</p:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
+
+			<p:confirmDialog id="confirmExclusao"
+				header="Exclusão do Tipo De Processo"
+				message="Tem certeza que deseja excluir o tipo de processo #{pesquisaTipoProcessoBean.tipoProcessoSelecionado.descricao}?"
+				showEffect="fade" hideEffect="fade" severity="alert"
+				widgetVar="confirmacaoDialog">
+				<h:form id="formExcluir">
+					<p:commandButton value="Sim"
+						action="#{pesquisaTipoProcessoBean.excluir}" immediate="true"
+						oncomplete="PF('confirmacaoDialog').hide()" process="@this"
+						update=":form:tiProTable" />
+					<p:commandButton value="Não"
+						onclick="PF('confirmacaoDialog').hide()" type="button" />
+				</h:form>
+			</p:confirmDialog>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

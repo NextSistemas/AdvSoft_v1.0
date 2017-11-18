@@ -1,0 +1,140 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+	<p:tabView id="painelView" style="margin-top: 15px; width: 100%"
+		effect="fade">
+		<p:tab title="Dados Pessoais">
+			<p:panelGrid columns="4" columnClasses="rotulo, campo, rotulo, campo"
+				style="width: 100%">
+
+
+				<p:outputLabel value="NOME:" for="nome" />
+				<p:inputText id="nome" size="50" maxlength="60"
+					placeholder="Ex. DRª Maria Rita" required="true"
+					requiredMessage="O Nome é obrigatório!"
+					value="#{cadastroAdvogadoBean.pessoa.nome}" />
+
+				<p:outputLabel value="OAB" for="oab" />
+				<p:inputText id="oab" size="10" maxlength="10"
+					placeholder="Digite o nº OAB" required="true"
+					requiredMessage="O OAB é obrigatório!"
+					value="#{cadastroAdvogadoBean.pessoa.oab}" />
+
+				<p:outputLabel value="CELULAR" for="celular" />
+				<p:inputMask id="celular" mask="(99) 99999-9999" size="15"
+					maxlength="15" placeholder="Digite o celular" required="true"
+					requiredMessage="O celular é obrigatório!"
+					value="#{cadastroAdvogadoBean.pessoa.celular}" />
+
+				<p:outputLabel value="TELEFONE:" for="telefone" />
+				<p:inputMask id="telefone" mask="(99) 9999-9999" size="14"
+					maxlength="14" placeholder="Digite o telefone"
+					value="#{cadastroAdvogadoBean.pessoa.telefone}" />
+
+				<p:outputLabel value="E-MAIL:" for="email" />
+				<p:inputText id="email" size="50" maxlength="100"
+					placeholder="Digite o e-mail"
+					value="#{cadastroAdvogadoBean.pessoa.email}" />
+
+				<p:outputLabel value="SITUAÇÃO:" for="situacao"
+					style="font-weight: bold" />
+				<p:selectOneRadio id="situacao" required="true"
+					requiredMessage="A situação e obrigatória!"
+					value="#{cadastroAdvogadoBean.pessoa.situacao}">
+					<f:selectItem itemLabel="ATIVO" itemValue="ATIVO" />
+					<f:selectItem itemLabel="INATIVO" itemValue="INATIVO" />
+				</p:selectOneRadio>
+			</p:panelGrid>
+		</p:tab>
+
+		<p:tab title="Endereço">
+			<p:panelGrid columns="4" columnClasses="rotulo, campo, rotulo, campo"
+				style="width: 100%">
+				<p:outputLabel value="ENDEREÇO:" for="endereco" />
+				<p:inputText id="endereco" size="50" maxlength="150"
+					placeholder="Digite o nome da rua" required="true"
+					requiredMessage="O endereço é obrigatório!"
+					value="#{cadastroAdvogadoBean.pessoa.endereco}" />
+
+				<p:outputLabel value="CEP:" for="cep" />
+				<p:inputMask id="cep" mask="99999-999" size="10" maxlength="9"
+					required="true" placeholder="Digite o cep"
+					requiredMessage="O CEP é obrigatório!"
+					value="#{cadastroAdvogadoBean.pessoa.cep}" />
+
+				<p:outputLabel value="COMPLEMENTO:" for="complemento" />
+				<p:inputText id="complemento" size="20" maxlength="100"
+					placeholder="Digite o complemento" required="true"
+					requiredMessage="O complemento é obrigatório!"
+					value="#{cadastroAdvogadoBean.pessoa.complemento}" />
+
+				<p:outputLabel value="Nº:" for="numero" />
+				<p:inputText id="numero" size="20" maxlength="10"
+					placeholder="Digite o numero"
+					value="#{cadastroAdvogadoBean.pessoa.numero}" />
+
+				<p:outputLabel value="BAIRRO:" for="bairro" />
+				<p:inputText id="bairro" size="50" maxlength="100"
+					placeholder="Digite o bairro"
+					value="#{cadastroAdvogadoBean.pessoa.bairro}" />
+
+				<p:outputLabel value="CIDADE:" for="cidade" />
+				<p:inputText id="cidade" size="20" maxlength="100"
+					placeholder="Digite a cidade" required="true"
+					requiredMessage="A cidade é obrigatória!"
+					value="#{cadastroAdvogadoBean.pessoa.cidade}" />
+
+				<p:outputLabel value="ESTADO(UF)" for="uf" />
+				<p:selectOneMenu id="uf" value="#{cadastroAdvogadoBean.pessoa.uf}"
+					required="true" requiredMessage="UF do Estado é obrigatório">
+					<f:selectItem itemLabel="Selecione" itemValue="" />
+					<f:selectItem itemLabel="PA - Pará" itemValue="PA" />
+					<f:selectItem itemLabel="AC - Acre" itemValue="AC" />
+					<f:selectItem itemLabel="AL - Alagoas" itemValue="AL" />
+					<f:selectItem itemLabel="AP - Amapá" itemValue="AP" />
+					<f:selectItem itemLabel="AM - Amazonas" itemValue="AM" />
+					<f:selectItem itemLabel="BA - Bahia" itemValue="BA" />
+					<f:selectItem itemLabel="CE - Ceará" itemValue="CE" />
+					<f:selectItem itemLabel="DF - Distrito Federal" itemValue="DF" />
+					<f:selectItem itemLabel="ES - Espírito Santo" itemValue="ES" />
+					<f:selectItem itemLabel="GO - Goiás" itemValue="GO" />
+					<f:selectItem itemLabel="MA - Maranhão" itemValue="MA" />
+					<f:selectItem itemLabel="MT - Mato Grosso" itemValue="MT" />
+					<f:selectItem itemLabel="MS - Mato Grosso do Sul" itemValue="MS" />
+					<f:selectItem itemLabel="MG - Minas Gerais" itemValue="MG" />
+					<f:selectItem itemLabel="PB - Paraíba" itemValue="PB" />
+					<f:selectItem itemLabel="PR - Paraná" itemValue="PR" />
+					<f:selectItem itemLabel="PE - Pernambuco" itemValue="PE" />
+					<f:selectItem itemLabel="PI - Piauí" itemValue="PI" />
+					<f:selectItem itemLabel="RJ - Rio de Janeiro" itemValue="RJ" />
+					<f:selectItem itemLabel="RN - Rio Grande do Norte" itemValue="RN" />
+					<f:selectItem itemLabel="RS - Rio Grande do Sul" itemValue="RS" />
+					<f:selectItem itemLabel="RO - Rondônia" itemValue="RO" />
+					<f:selectItem itemLabel="RR - Roraima" itemValue="RR" />
+					<f:selectItem itemLabel="SC - Santa Catarina" itemValue="SC" />
+					<f:selectItem itemLabel="SP - São Paulo" itemValue="SP" />
+					<f:selectItem itemLabel="SE - Sergipe" itemValue="SE" />
+					<f:selectItem itemLabel="TO - Tocantins" itemValue="TO" />
+				</p:selectOneMenu>
+			</p:panelGrid>
+		</p:tab>
+
+		<p:tab title="Observações">
+			<p:panelGrid columns="2" columnClasses="rotulo, campo"
+				style="width: 100%">
+				<p:outputLabel value="OBSERVAÇÕES:" for="obs" />
+				<h:panelGroup>
+					<p:inputTextarea id="obs"
+						value="#{cadastroAdvogadoBean.pessoa.observacao}" cols="100"
+						rows="1" autoResize="true" maxlength="250" counter="contador"
+						counterTemplate="Restam {0} caracteres" />
+					<br />
+					<h:outputText id="contador" />
+				</h:panelGroup>
+			</p:panelGrid>
+		</p:tab>
+	</p:tabView>
+</ui:composition>

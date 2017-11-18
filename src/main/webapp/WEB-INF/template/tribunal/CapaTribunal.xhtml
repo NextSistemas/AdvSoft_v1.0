@@ -1,0 +1,26 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+	<p:panelGrid columns="4" columnClasses="rotulo, campo, rotulo, campo"
+		style="margin-top: 15px; width: 100%">
+		<p:outputLabel value="DESCRIÇÃO:" for="desc" />
+		<p:inputText id="desc" size="50" maxlength="100"
+			placeholder="Descrição do tribunal"
+			value="#{cadastroTribunalBean.tribunal.descricao}" required="true"
+			requiredMessage="A descrição é obrigatório!" />
+
+		<p:outputLabel value="ENDEREÇO" for="endereco" />
+		<p:inputText id="endereco" size="50" maxlength="150"
+			placeholder="Digite o endereço do tribunal"
+			value="#{cadastroTribunalBean.tribunal.endereco}" />
+
+		<p:outputLabel value="PERTENCE:" for="pertence" />
+		<p:inputText id="pertence" size="30" maxlength="45"
+			placeholder="Ex.: TRE, TRJ..."
+			value="#{cadastroTribunalBean.tribunal.pertence}" />
+
+	</p:panelGrid>
+</ui:composition>
