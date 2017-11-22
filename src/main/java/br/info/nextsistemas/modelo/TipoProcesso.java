@@ -12,9 +12,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tipo_processo")
 public class TipoProcesso implements Serializable{
-
+	/**
+	 * Altor: Kaio Tavares
+	 */
 	private static final long serialVersionUID = 1L;
-
 	private Long codigo;
 	private String Descricao;
 	
