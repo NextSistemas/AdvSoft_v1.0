@@ -8,9 +8,7 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.info.nextsistemas.dao.InstanciaDAO;
 import br.info.nextsistemas.modelo.Comarca;
-import br.info.nextsistemas.modelo.Instancia;
 import br.info.nextsistemas.service.CadastroComarcaService;
 import br.info.nextsistemas.service.NegocioException;
 import br.info.nextsistemas.util.jsf.FacesUtil;
